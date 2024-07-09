@@ -4,7 +4,7 @@
 
 wheel
 gunicorn==20.1.0  # https://github.com/benoitc/gunicorn
-psycopg2-binary==2.9.3  # https://github.com/psycopg/psycopg2
+psycopg2-binary==2.9.9  # https://github.com/psycopg/psycopg2
 Collectfast==2.2.0  # https://github.com/antonagestam/collectfast
 
 # Django
