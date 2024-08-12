@@ -17,7 +17,7 @@ echo "Starting $NAME as `whoami`"
 
 # Activate the virtual environment
 cd $DJANGODIR
-source /home/ec2-user/venv-dev/bin/activate
+source /home/ec2-user/venv312-dev-all/first/bin/activate
 export DJANGO_READ_DOT_ENV_FILE=True
 export DJANGO_SETTINGS_MODULE=config.settings.production
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH

@@ -2,7 +2,7 @@
 
 from calendar import c
 from datetime import date
-from django.db import migrations
+from django.db import IntegrityError, migrations
 
 from teleband.courses.helper import assign_piece_plan
 from teleband.assignments.models import PiecePlan as PiecePlanModel
@@ -49,12 +49,15 @@ def add_demos(apps, schema_editor):
             if user.instrument is None:
                 user.instrument = Instrument.objects.get(name="Piano")
                 user.save()
-            Enrollment.objects.update_or_create(
-                user=user,
-                course=demo_course,
-                instrument=user.instrument,
-                role=student_role,
-            )
+            try:
+                Enrollment.objects.update_or_create(
+                    user=user,
+                    course=demo_course,
+                    instrument=user.instrument,
+                    role=student_role,
+                )
+            except IntegrityError as e:
+                print(f"IntegrityError: {e}")
 
         for piece_name in NEA_CREATE_DEMO_PIECES:
             if piece_name=="I Want to be Ready" and condition != 'Aural':
